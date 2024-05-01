@@ -75,3 +75,13 @@ With the CosineSimilarity library, the script determines the similarity score ba
 * creators' name
 
 If the similarity score is too high, the game is retrieved from the list.
+
+### Handle the complexixity rate (weight)
+
+A user can select a max value for weight.
+
+This feature aims to recommand a game with less complexity.
+
+For example, I like to play Tzolk'in, but I think this game is too complex for me.
+
+I can find a similar game wich is less complex.
