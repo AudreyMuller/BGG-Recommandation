@@ -6,7 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
 
 
-def game_domain_category(df, k, y, nb_players, id_selected_game):
+def game_domain_category(df, k, y,c, nb_players, id_selected_game):
     # TREATMENT SUGGESTED PLAYER
     # for empty list, fill with all numbers of player
     # and transform int in str before ','.join()
@@ -122,6 +122,10 @@ def game_domain_category(df, k, y, nb_players, id_selected_game):
     if y is not None :
         # delete games which year is before ref year
         df_other_game = df_other_game[df_other_game['year']>= y]
+
+    if c is not None :
+        # delete games which complexity rate is higher than the selected value
+        df_other_game = df_other_game[df_other_game['weight']<=c]
 
     col_X = ['bgg_rank',
              'ratio_play',

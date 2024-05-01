@@ -57,6 +57,11 @@ layout = dbc.Container([
                 html.H6("Choisissez l'année minimum'"),
                 dcc.Input(type='number', id='year_id', required=False, min=min_year, max=max_year)
             ]),
+            html.P(''),
+            dbc.Row([
+                html.H6("Choisissez la complexité max"),
+                dcc.Input(type='number', id='compl_id', required=False, min=0, max=5)
+            ]),
             dbc.Row([
                 html.P(''),
                 dbc.Button('Launch', id='launch_btn', className='primary'),
@@ -80,14 +85,16 @@ layout = dbc.Container([
     State('player_id', 'value'),
     State('k_id', 'value'),
     State('year_id', 'value'),
+    State('compl_id','value'),
     prevent_initial_call=True,
 )
-def recommandation(add_clicks, selected_game, selected_player, k, y):
+def recommandation(add_clicks, selected_game, selected_player, k, y,c):
     print(selected_game)
     print(selected_player)
     print(y)
+    print(c)
     selected_game = int(selected_game)
-    result = reco.game_domain_category(df, k, y, selected_player, selected_game)
+    result = reco.game_domain_category(df, k, y,c, selected_player, selected_game)
     result_str = ' - '.join(result['name'].to_list())
 
     df_selected_game = df[df['id'] == selected_game]
